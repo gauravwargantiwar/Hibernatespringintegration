@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+   	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="pid" class="com.spring.springproject5.Product">
+		<property name="productid" value="10" />
+		<property name="productname" value="gaurav" />
+		<property name="productprice" value="5000" />
+		<!-- <property name = "vendor" ref = "vid"/> -->
+	</bean>
+
+	<bean id="vendor" class="com.spring.springproject5.Vendor">
+		<property name="venid" value="50" />
+		<property name="vendtype" value="contract" />
+
+	</bean>
+
+	<bean id="pid1" class="com.spring.springproject5.Product">
+		<property name="productid" value="50" />
+		<property name="productname" value="nik" />
+		<property name="productprice" value="6420" />
+		<!-- <property name = "vendor" ref = "vid"/> -->
+	</bean>
+	<!-- <bean id="pid5" class="com.spring.springproject5.Customer">
+		<constructor-arg type="float" index="0" value="1000" />
+		<constructor-arg type="java.lang.String" index="1"
+			value="gaurav" />
+
+		<property name = "vendor" ref = "vid"/>
+	</bean> -->
+
+
+
+
+	<!-- Spring HIbernate Configuration -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gaurav" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	<bean id="hbmSessioNFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.spring.springproject5</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
